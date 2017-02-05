@@ -60,7 +60,6 @@ do
 done
 
 source $HOME/./forward.sh
-
 }
 
 Generator;
