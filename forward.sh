@@ -16,7 +16,6 @@ $2
 $3
 EOF
 fi
-
 }
 
 Login "credentials" "aws_access_key_id=yourkeyid" "aws_secret_access_key=yoursecretkey"
@@ -61,24 +60,19 @@ case "$MAC" in
         ${VINTERFACES[0]})
             BCKT=${VMACS[0]}-logs
             ;;
-
         ${VINTERFACES[1]})
             BCKT=${VMACS[1]}-logs
             ;;
-
         ${VINTERFACES[2]})
             BCKT=${VMACS[2]}-logs
             ;;
-
         ${VINTERFACES[3]})
             BCKT=${VMACS[3]}-logs
             ;;
-
         ${VINTERFACES[4]})
             BCKT=${VMACS[4]}-logs
             ;;
 esac
-
 }
 
 Forward ()
