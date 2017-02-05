@@ -1,10 +1,38 @@
 #!/bin/bash
 
+# For manual delete the line 4 and line 28 to 34
+:<<'manualy'
+Input ()
+{
+
+echo
+echo "Enter the number of logs to be generated!"
+echo
+echo -n :
+read NLOGS
+echo
+
+if [ $(echo $NLOGS | grep -c '^[0-9]\+$') = 0 ] || [ $NLOGS -eq 0 ]
+then
+        echo "Only positive numbers!";
+        Input;
+fi
+
+}
+
+Generator ()
+{
+
+Input;
+
+for ((i=1; i<=$NLOGS; i++))
+manualy
+
 Generator ()
 {
 
 # out default json nginx
-for ((i=1; i<=1000; i++))
+for ((i=1; i<=10000; i++))
 do
         echo -e ""\|""\"time\": \"${TIMEACCESS[$RANDOM % 8]}:$[($RANDOM % 24)]:$[($RANDOM % 24)]:$[($RANDOM % 60)]\", \
         "\|"\"remote_addr\": \"${IPS[$RANDOM % 10]}\", "\|"\"remote_user\": \"-\", "\|"\"body_bytes_sent\": \"133\", \
