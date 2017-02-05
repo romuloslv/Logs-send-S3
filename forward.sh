@@ -19,8 +19,73 @@ fi
 
 }
 
-Login "credentials" "aws_access_key_id=yourid" "aws_secret_access_key=yourkey"
+Login "credentials" "aws_access_key_id=yourkeyid" "aws_secret_access_key=yoursecretkey"
 Login "config" "region=yourzone" "output=yourformat"
+
+# For manual delete the line 26 and line 87 to 93
+:<<'manualy'
+InputM ()
+{
+
+INTERFACES=$(ip l | cut -d ':' -f 2 | grep -v ^[0-9] | grep -v ^[a-z] | egrep -v "lo")
+VINTERFACES=($INTERFACES)
+MACS=$(ip link | awk '/ether/ {print $2}' | sed 's/:/-/g')
+VMACS=($MACS)
+
+echo "Enter the interface corresponding to the mac that will be used when creating the bucket!"
+echo
+echo "$INTERFACES"
+echo
+echo -n ":"
+read MAC
+echo
+
+for ((i=0; i<${#VINTERFACES[*]}; i++))
+do
+if [ $MAC = ${VINTERFACES[$i]} ]
+then
+        j=0;
+else
+        let j++
+fi
+done
+
+if [ $j -eq ${#VINTERFACES[*]} ]
+then
+        unset j;
+        InputM;
+fi
+
+case "$MAC" in
+
+        ${VINTERFACES[0]})
+            BCKT=${VMACS[0]}-logs
+            ;;
+
+        ${VINTERFACES[1]})
+            BCKT=${VMACS[1]}-logs
+            ;;
+
+        ${VINTERFACES[2]})
+            BCKT=${VMACS[2]}-logs
+            ;;
+
+        ${VINTERFACES[3]})
+            BCKT=${VMACS[3]}-logs
+            ;;
+
+        ${VINTERFACES[4]})
+            BCKT=${VMACS[4]}-logs
+            ;;
+esac
+
+}
+
+Forward ()
+{
+
+InputM;
+manualy
 
 Forward ()
 {
@@ -30,7 +95,7 @@ BCKT=$(ip link | awk '/ether/ {print $2}' | sed 's/:/-/g')-logs
 # search and create bucket
 aws s3 ls | grep -o $BCKT
 
-if [ $? -eq 1 ]
+if [ $? -ne 0 ]
 then
     aws s3api create-bucket --bucket $BCKT --create-bucket-configuration LocationConstraint=us-west-2
 
@@ -87,7 +152,6 @@ else
         done
         aws s3 rm s3://$BCKT/$ACCESSDTRLT/
 fi
-
 }
 
 Forward;
