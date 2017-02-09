@@ -130,9 +130,9 @@ then
                 rm $HOME/policy.json
         fi
 else
-        while [ $(ls $HOME | grep access.2017 | wc -l) -ne 0 ]
+        while [ $(ls $HOME | grep access. | wc -l) -ne 0 ]
         do
-                bkp_dir=$(ls $HOME | grep access.2017)
+                bkp_dir=$(ls $HOME | grep access.)
                 vector_bkp=($bkp_dir)
                 for((i=0; i<${#vector_bkp[*]}; i++))
                 do
