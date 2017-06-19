@@ -4,8 +4,6 @@ The system below provides a simulation of logging HTTP requests from a web serve
 
 The following conditions were met:
 
-* Redundant data
-* Disaster Recovery
 * Scalability
 * Monitoring
 
