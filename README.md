@@ -2,8 +2,6 @@
 
 The system below provides a simulation of logging HTTP requests from a web server in addition to sending these logs to a s3 bucket in AWS. More details of the scenario and the tools used for the tests will be presented below.
 
-The following conditions were met:
-
 **Products used on AWS: EC2 (t2.micro) | S3 (Bucket)**
 
 ```
