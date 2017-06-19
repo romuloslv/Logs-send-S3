@@ -4,9 +4,6 @@ The system below provides a simulation of logging HTTP requests from a web serve
 
 The following conditions were met:
 
-* Scalability
-* Monitoring
-
 **Products used on AWS: EC2 (t2.micro) | S3 (Bucket)**
 
 ```
