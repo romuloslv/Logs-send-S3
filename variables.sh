@@ -1,11 +1,12 @@
+
 #!/bin/bash
 
 Variables ()
 {
 
-export HOME="/home/ec2-user"
+export HOME="/home"
 export DT="$(date +%Y-%m-%d-%H:%M:%S)"
-export ACCESSDTRLT="access.$DT"
+export ACCESSDTRLT="$(ip link | awk '/ether/ {print $2}' | sed 's/:/-/g')-access.$DT"
 export ACCESSDTABS="$HOME/$ACCESSDTRLT"
 export HTTP=("200" "301" "400" "401" "403" "404" "500")
 export CONT="($(for((i=2000; i<5000; i++)) do echo $i; done))"
