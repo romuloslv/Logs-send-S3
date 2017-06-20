@@ -27,7 +27,7 @@ do
         rm -rf $ACCESSDTRLT.log.${vector_split[$i]}
 done
 
-rsync -arzhe ssh $ACCESSDTABS root@192.168.1.15:/var/log/mail
+rsync -arzhe ssh $ACCESSDTABS root@xxx.xxx.xxx.xxx:/var/log/mail
 rm -rf $ACCESSDTABS
 }
 
